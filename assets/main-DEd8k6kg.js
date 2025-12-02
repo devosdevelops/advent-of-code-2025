@@ -1,4 +1,4 @@
-(function(){const s=document.createElement("link").relList;if(s&&s.supports&&s.supports("modulepreload"))return;for(const e of document.querySelectorAll('link[rel="modulepreload"]'))l(e);new MutationObserver(e=>{for(const t of e)if(t.type==="childList")for(const a of t.addedNodes)a.tagName==="LINK"&&a.rel==="modulepreload"&&l(a)}).observe(document,{childList:!0,subtree:!0});function o(e){const t={};return e.integrity&&(t.integrity=e.integrity),e.referrerPolicy&&(t.referrerPolicy=e.referrerPolicy),e.crossOrigin==="use-credentials"?t.credentials="include":e.crossOrigin==="anonymous"?t.credentials="omit":t.credentials="same-origin",t}function l(e){if(e.ep)return;e.ep=!0;const t=o(e);fetch(e.href,t)}})();const n=Array.from({length:12},(r,s)=>s+1);document.querySelector("#app").innerHTML=`
+import"./modulepreload-polyfill-B5Qt9EMX.js";const l=Array.from({length:12},(t,e)=>e+1);document.querySelector("#app").innerHTML=`
   <div class="min-h-screen bg-gradient-to-b from-red-50 to-green-50">
     <!-- Header -->
     <div class="bg-gradient-to-r from-red-600 to-green-600 text-white py-8 sm:py-16 shadow-lg">
@@ -23,14 +23,14 @@
               </tr>
             </thead>
             <tbody>
-              ${n.map((r,s)=>{const o=r===1;return`
-                  <tr class="${s%2===0?"bg-gray-50":"bg-white"} hover:bg-red-50 transition-colors border-b border-gray-200">
-                    <td class="px-3 sm:px-10 py-4 sm:py-8 font-bold text-lg sm:text-2xl text-red-600">Day ${r}</td>
+              ${l.map((t,e)=>{const s=t===1;return`
+                  <tr class="${e%2===0?"bg-gray-50":"bg-white"} hover:bg-red-50 transition-colors border-b border-gray-200">
+                    <td class="px-3 sm:px-10 py-4 sm:py-8 font-bold text-lg sm:text-2xl text-red-600">Day ${t}</td>
                     <td class="px-3 sm:px-10 py-4 sm:py-8">
-                      ${o?`<a href="./views/day${r}/index.html" class="text-blue-600 hover:text-blue-800 font-semibold underline transition-colors text-sm sm:text-base">View Solution</a>`:'<span class="text-gray-500 text-sm sm:text-base">Puzzle locked</span>'}
+                      ${s?`<a href="./src/views/day${t}/index.html" class="text-blue-600 hover:text-blue-800 font-semibold underline transition-colors text-sm sm:text-base">View Solution</a>`:'<span class="text-gray-500 text-sm sm:text-base">Puzzle locked</span>'}
                     </td>
                     <td class="px-3 sm:px-10 py-4 sm:py-8 text-center">
-                      ${o?'<span class="inline-flex items-center px-3 sm:px-4 py-1 sm:py-2 rounded-full bg-green-100 text-green-800 font-semibold text-xs sm:text-sm"><span class="mr-1 sm:mr-2">✓</span>Completed</span>':'<span class="inline-flex items-center px-3 sm:px-4 py-1 sm:py-2 rounded-full bg-yellow-100 text-yellow-800 font-semibold text-xs sm:text-sm">Coming Soon</span>'}
+                      ${s?'<span class="inline-flex items-center px-3 sm:px-4 py-1 sm:py-2 rounded-full bg-green-100 text-green-800 font-semibold text-xs sm:text-sm"><span class="mr-1 sm:mr-2">✓</span>Completed</span>':'<span class="inline-flex items-center px-3 sm:px-4 py-1 sm:py-2 rounded-full bg-yellow-100 text-yellow-800 font-semibold text-xs sm:text-sm">Coming Soon</span>'}
                     </td>
                   </tr>
                 `}).join("")}
