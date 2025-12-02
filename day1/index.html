@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+<body>
+    <h2 id="code1"></h2>
+    <h3 id="revolutions"></h3>
+    <h2 id="code2"></h2>
+    <h3 id="output"></h3>
+</body>
+</html>
+<script>
+    "use strict";
+
+    let start = 50;
+
+    let testArray = [
+        "L168",
+        "L30", 
+        "R48",
+        "L5",
+        "R60",
+        "L55",
+        "L1",
+        "L99",
+        "R14",
+        "L82"
+    ];
+
+
+    const txtToArray = async (txt) => {
+        try{
+            const response = await fetch(txt);
+
+            const fileContent = await response.text();
+
+            const textArray = fileContent.split('\n')
+                .map(line => line.trim())
+                .filter(line => line.length > 0)
+
+            return textArray;
+
+        }catch(err){
+            console.error(err);
+        }
+    }
+
+    const findCode = async (rotations, start) => {
+        let max = 100;
+        let min = 0;
+        let range = max - min;
+        let code = 0;
+        let totalRevolutions = 0;
+        let currentNumber = start
+
+
+        for(let i = 0; i < rotations.length; i++){
+            let direction = 0;
+            let previousNumber;
+            let revolutions = 0;
+
+            if(i > 0){
+                previousNumber = currentNumber;
+            }else{
+                previousNumber = start;
+            }
+
+            if(rotations[i].startsWith("R")){
+                direction = 1;
+            }else if(rotations[i].startsWith("L")){
+                direction = -1;
+            }
+
+            let rotation = direction * parseInt(rotations[i].substring(1));
+
+            currentNumber += rotation;
+
+            if(currentNumber > max){
+                revolutions = Math.floor(currentNumber / range);
+                if(currentNumber % range == 0){
+                    revolutions--;
+                }
+                totalRevolutions += revolutions;
+            }else if(currentNumber < min){
+                revolutions = Math.ceil(Math.abs(currentNumber) / range);
+                if(previousNumber % range == 0){
+                    revolutions--;
+                }
+                totalRevolutions += revolutions;
+            }
+
+            currentNumber = ((currentNumber % range) + range) % range;
+
+            console.log( { 
+                previousNumber: previousNumber,
+                currentNumber: currentNumber,
+                revolutions: revolutions,
+                rotation: rotation
+            }); 
+
+
+            if (currentNumber === 0) {
+                code++;
+            }
+
+            //console.log("number  "+i+": "+currentNumber);
+        }
+
+        document.getElementById("code1").innerHTML = "Code 1: " + code;
+        document.getElementById("revolutions").innerHTML = "Total Revolutions: " + totalRevolutions;
+        document.getElementById("code2").innerHTML = "Code 2: " + (code + totalRevolutions);
+        document.getElementById("output").innerHTML = "Final number: " + currentNumber;
+        
+    }
+
+    const rotationsArray = txtToArray('./day1.txt');
+
+    (async () => {
+        findCode(await rotationsArray, start);
+    })();
+
+    //findCode(testArray, start);
+
+</script>
