@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/svg+xml" href="../../../favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advent of Code 2025 - Day 1</title>
+    <style> @import "tailwindcss";</style>
+</head>
+<body class="bg-gradient-to-b from-red-50 to-green-50">
+    <!-- Header -->
+    <div class="bg-gradient-to-r from-red-600 to-green-600 text-white py-8 sm:py-12 shadow-lg">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6">
+            <a href="/" class="text-red-50 hover:text-white text-sm mb-3 inline-block">← Back to Overview</a>
+            <h1 class="text-3xl sm:text-4xl font-bold">🎄 Day 1</h1>
+        </div>
+    </div>
+
+    <!-- Content -->
+    <div class="h-[calc(100vh-200px)] px-4 sm:px-6 py-8 sm:py-12">
+        <div class="flex flex-col lg:flex-row gap-6 sm:gap-8 h-full">
+            <!-- Main Results -->
+            <main class="flex-1 min-w-0">
+                <div class="bg-white rounded-lg shadow-2xl p-6 sm:p-10 border-l-8 border-red-500 h-full flex flex-col">
+                    <h2 class="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-red-600 to-green-600 bg-clip-text text-transparent mb-8">✨ Results</h2>
+                    
+                    <div class="space-y-8 overflow-y-auto flex-1 pr-4">
+                        <div class="bg-gradient-to-r from-indigo-50 to-transparent p-4 rounded-lg border-l-4 border-indigo-500">
+                            <h2 id="code1" class="text-xl sm:text-2xl font-bold text-indigo-700"></h2>
+                        </div>
+                        
+                        <div class="bg-gradient-to-r from-red-50 to-transparent p-4 rounded-lg border-l-4 border-red-500">
+                            <h3 id="revolutions" class="text-lg sm:text-xl font-semibold text-red-700"></h3>
+                        </div>
+                        
+                        <div class="bg-gradient-to-r from-green-50 to-transparent p-4 rounded-lg border-l-4 border-green-500">
+                            <h2 id="code2" class="text-xl sm:text-2xl font-bold text-green-700"></h2>
+                        </div>
+                        
+                        <div class="bg-gradient-to-r from-blue-50 to-transparent p-4 rounded-lg border-l-4 border-blue-500">
+                            <h3 id="output" class="text-lg sm:text-xl font-semibold text-blue-700"></h3>
+                        </div>
+                    </div>
+                </div>
+            </main>
+
+            <!-- Code Display -->
+            <aside class="flex-1 min-w-0">
+                <div class="bg-slate-800 rounded-lg shadow-2xl p-6 sm:p-10 border-l-8 border-amber-500 h-full flex flex-col">
+                    <h3 class="text-amber-300 font-bold mb-6 text-sm sm:text-base flex items-center gap-2">
+                        <span class="text-lg">⚙️</span> JavaScript Code
+                    </h3>
+                    <pre id="jsCode" class="flex-1 overflow-y-auto font-mono text-xs sm:text-sm text-emerald-300 leading-relaxed whitespace-pre-wrap break-words pr-4"></pre>
+                </div>
+            </aside>
+        </div>
+    </div>
+</body>
+</html>
+<script type="module">
+    import { findCode, txtToArray } from './script.js';
+    import { displayResults, displayCode } from '../utils/displayUtils.js';
+
+    const start = 50;
+
+    (async () => {
+        const rotations = await txtToArray('./day1.txt');
+        const results = await findCode(rotations, start);
+        displayResults(results);
+
+        // Fetch and display the source code from script.js
+        try {
+            const response = await fetch('./script.js');
+            let scriptContent = await response.text();
+            // Remove source map comment
+            scriptContent = scriptContent.replace(/\/\/# sourceMappingURL=.*/g, '').trim();
+            displayCode(scriptContent);
+        } catch (err) {
+            console.error('Error loading script.js:', err);
+        }
+    })();
+</script>

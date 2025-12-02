@@ -6,4 +6,12 @@ export default defineConfig({
   plugins: [
     tailwindcss(),
   ],
+  build: {
+    rollupOptions: {
+      input: {
+        main: './index.html',
+        day1: './src/views/day1/index.html',
+      },
+    },
+  },
 })
