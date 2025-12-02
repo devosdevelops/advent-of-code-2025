@@ -36,7 +36,7 @@ document.querySelector('#app').innerHTML = `
                     <td class="px-3 sm:px-10 py-4 sm:py-8 font-bold text-lg sm:text-2xl text-red-600">Day ${day}</td>
                     <td class="px-3 sm:px-10 py-4 sm:py-8">
                       ${isCompleted 
-                        ? `<a href="./src/views/day${day}/index.html" class="text-blue-600 hover:text-blue-800 font-semibold underline transition-colors text-sm sm:text-base">View Solution</a>`
+                        ? `<a href="/advent-of-code-2025/src/views/day${day}/index.html" class="text-blue-600 hover:text-blue-800 font-semibold underline transition-colors text-sm sm:text-base">View Solution</a>`
                         : `<span class="text-gray-500 text-sm sm:text-base">Puzzle locked</span>`
                       }
                     </td>
