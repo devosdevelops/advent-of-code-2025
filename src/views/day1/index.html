@@ -64,13 +64,13 @@
     const start = 50;
 
     (async () => {
-        const rotations = await txtToArray('./day1.txt');
+        const rotations = await txtToArray('/advent-of-code-2025/day1.txt');
         const results = await findCode(rotations, start);
         displayResults(results);
 
         // Fetch and display the source code from script.js
         try {
-            const response = await fetch('./script.js');
+            const response = await fetch('/advent-of-code-2025/day1-script.js');
             let scriptContent = await response.text();
             // Remove source map comment
             scriptContent = scriptContent.replace(/\/\/# sourceMappingURL=.*/g, '').trim();
