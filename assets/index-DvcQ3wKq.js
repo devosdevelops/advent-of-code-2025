@@ -27,7 +27,7 @@
                   <tr class="${s%2===0?"bg-gray-50":"bg-white"} hover:bg-red-50 transition-colors border-b border-gray-200">
                     <td class="px-3 sm:px-10 py-4 sm:py-8 font-bold text-lg sm:text-2xl text-red-600">Day ${r}</td>
                     <td class="px-3 sm:px-10 py-4 sm:py-8">
-                      ${o?`<a href="./src/views/day${r}/index.html" class="text-blue-600 hover:text-blue-800 font-semibold underline transition-colors text-sm sm:text-base">View Solution</a>`:'<span class="text-gray-500 text-sm sm:text-base">Puzzle locked</span>'}
+                      ${o?`<a href="/advent-of-code-2025/src/views/day${r}/index.html" class="text-blue-600 hover:text-blue-800 font-semibold underline transition-colors text-sm sm:text-base">View Solution</a>`:'<span class="text-gray-500 text-sm sm:text-base">Puzzle locked</span>'}
                     </td>
                     <td class="px-3 sm:px-10 py-4 sm:py-8 text-center">
                       ${o?'<span class="inline-flex items-center px-3 sm:px-4 py-1 sm:py-2 rounded-full bg-green-100 text-green-800 font-semibold text-xs sm:text-sm"><span class="mr-1 sm:mr-2">✓</span>Completed</span>':'<span class="inline-flex items-center px-3 sm:px-4 py-1 sm:py-2 rounded-full bg-yellow-100 text-yellow-800 font-semibold text-xs sm:text-sm">Coming Soon</span>'}
